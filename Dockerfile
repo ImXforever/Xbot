@@ -17,9 +17,9 @@ COPY front/ ./front/
 COPY back/ ./back/
 COPY llm/ ./llm/
 COPY locales/ ./locales/
-COPY data/ ./data/
-RUN mkdir -p /app/data
+COPY data/ ./data_src/
+RUN mkdir -p /app/data && cp -n /app/data_src/__init__.py /app/data/ 2>/dev/null; cp -n /app/data_src/store.py /app/data/ 2>/dev/null; true
 
 # run.py = unified launcher (bot polling + webapp on $PORT in one process)
-CMD ["python", "run.py"]
+CMD ["sh", "-c", "cp -n /app/data_src/__init__.py /app/data/ 2>/dev/null; cp -n /app/data_src/store.py /app/data/ 2>/dev/null; python run.py"]
 
