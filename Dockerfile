@@ -21,3 +21,4 @@ RUN mkdir -p /app/data
 
 # run.py = unified launcher (bot polling + webapp on $PORT in one process)
 CMD ["python", "run.py"]
+
